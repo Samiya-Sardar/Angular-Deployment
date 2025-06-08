@@ -6,11 +6,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RenderMode } from '@angular/ssr';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent ,title:"Home"},
     {path:'products',component:ProductComponent,title:"Products",children:[
-        {path:"details/:productId",component:ProductDetailComponent,data:{prerender:'default'}},
+        {path:"details/:productId",component:ProductDetailComponent,  data: { renderMode: 'default' } // ✅ disables prerendering
+},
         {path:"addproduct",component:AddProductsComponent}
     ]},
     {path:'profile',component:ProfileComponent,title:"Profile"},
